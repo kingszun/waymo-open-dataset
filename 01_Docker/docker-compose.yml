@@ -1,0 +1,17 @@
+services:
+  waymo_open_dataset_mac:
+    image: kingszun/waymo_open_dataset
+    container_name: WAYMO_OPEN_DATASET
+    build:
+      context: ../
+      dockerfile: ./01_Docker/01_DockerFiles/waymo_open_dataset.Dockerfile
+    # network_mode: host
+    privileged: true
+    env_file:
+      - .env
+    volumes:
+      # - ../data:/data
+      - ../:/waymo_open_dataset
+    ports:
+      - 8888:8888/tcp
+
