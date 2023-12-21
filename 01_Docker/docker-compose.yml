@@ -1,17 +1,45 @@
 services:
-  waymo_open_dataset_mac:
-    image: kingszun/waymo_open_dataset
+  waymo_open_dataset:
+    image: ie/waymo_open_dataset
     container_name: WAYMO_OPEN_DATASET
     build:
       context: ../
-      dockerfile: ./01_Docker/01_DockerFiles/waymo_open_dataset.Dockerfile
+      dockerfile: ./01_Docker/01_DockerFiles/cpu-jupyter.Dockerfile
     # network_mode: host
     privileged: true
     env_file:
       - .env
     volumes:
-      # - ../data:/data
+      - ../data:/data
       - ../:/waymo_open_dataset
     ports:
       - 8888:8888/tcp
-
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+  colab_waymo_open_dataset:
+    image: ie/colab_waymo_open_dataset
+    container_name: COLAB_WAYMO_OPEN_DATASET
+    build:
+      context: ../
+      dockerfile: ./01_Docker/01_DockerFiles/colab.Dockerfile
+    # network_mode: host
+    privileged: true
+    env_file:
+      - .env
+    volumes:
+      - ../data:/data
+      - ../:/waymo_open_dataset
+    ports:
+      - 8888:8888/tcp
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

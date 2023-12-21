@@ -161,8 +161,14 @@ RUN python3 -m pip install absl-py==1.4.0 \
 && python3 -m pip install easydict==1.11 \
 && python3 -m pip install ecos==2.0.12 \
 && python3 -m pip install editdistance==0.6.2 \
-&& python3 -m pip install eerepr==0.0.4 \
-&& python3 -m pip install en-core-web-sm==3.6.0 \
+&& python3 -m pip install eerepr==0.0.4
+
+# for install en-core-web-sm
+RUN python3 -m pip install spacy==3.6.1 \
+&& python3 -m pip install spacy-legacy==3.0.12 \
+&& python3 -m pip install spacy-loggers==1.0.5
+
+RUN python3 -m pip install en-core-web-sm==3.6.0 \
 && python3 -m pip install entrypoints==0.4 \
 && python3 -m pip install et-xmlfile==1.1.0 \
 && python3 -m pip install etils==1.6.0 \
@@ -468,9 +474,6 @@ RUN python3 -m pip install absl-py==1.4.0 \
 && python3 -m pip install soundfile==0.12.1 \
 && python3 -m pip install soupsieve==2.5 \
 && python3 -m pip install soxr==0.3.7 \
-&& python3 -m pip install spacy==3.6.1 \
-&& python3 -m pip install spacy-legacy==3.0.12 \
-&& python3 -m pip install spacy-loggers==1.0.5 \
 && python3 -m pip install Sphinx==5.0.2 \
 && python3 -m pip install sphinxcontrib-applehelp==1.0.7 \
 && python3 -m pip install sphinxcontrib-devhelp==1.0.5 \
